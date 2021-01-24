@@ -1,0 +1,12 @@
+req_packages <- c("devtools",
+		"broom",
+		"tidyverse",
+		"here",
+		"ggplot2",
+		"gganimate",
+		"gifski",
+		"png",
+ 		"e1071", 
+ 		"DAAG")
+
+install.packages(req_packages)

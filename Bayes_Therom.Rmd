@@ -1,0 +1,151 @@
+---
+title: "Bays Theorm"
+author: "Hussain Alsalman"
+date: "1/22/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### BAYS THEORM 
+
+Inspector Ahmed arrives at the scene of a crime. The victim lies dead in the room and the inspector quickly finds the murder weapon,a Knife (K). The Butler (B) and Maid (M) are his main suspects. The inspector has a prior belief of 0.6 that the Butler is the murderer, and a prior belief of 0.2 that the Maid is the murderer. These probabilities are independent in the sense that p(B,M)  =p(B)p(M). (It  is possible  that both  the Butler and the  Maid murdered the  victim or neither).
+
+The inspector’s prior criminal knowledge can be formulated mathematically as follows:
+
+* domain(B) = domain(M) ={murderer,not murderer}
+* domain(K) ={knife used,knife not used}
+
+* p(B=murderer) = 0.6, p(M=murderer) = 0.2
+
+* p(knife used| B=not murderer, M=not murderer)  = 0.3
+* p(knife used| B=not murderer, M=murderer)= 0.2
+* p(knife used| B=murderer,M=not murderer)  = 0.6
+* p(knife used| B=murderer,M=murderer)= 0.1
+
+### New evidance
+The victim lies dead in the room and the inspector quickly finds the murder weapon, a Knife (K). 
+
+### Inspector Tasks
+What is the probability that the Butler is the murderer? (Remember that it might be that neither is the murderer).
+
+
+## Example: The probability Murder
+
+
+```{r importing data, message=FALSE}
+library("here")
+df <- read.csv(here("assets", "Data", "Bays_Theorm_randomized.csv"))
+```
+
+## Let's review the Bayes Theorm again
+
+```{r, out.width= "%80", fig.align='center'}
+knitr::include_graphics(path = here("assets", "Images", "bayes-theorem-in-c.png"))
+```
+
+
+
+the probability that the butler is the murderer given that the knife is the crime weapon is as follows. m term represent both states of maid. 
+
+This is simply the conditional probability on Knife being used 
+
+$$
+P(B,m| K ) = \sum_m\frac{P(K,B,m)}{P(K)}
+$$
+First we expand the nominator 
+
+$$ 
+P(K, B, m) = \sum_m {P(K | B, m ) * P(B, m)}
+$$
+
+This is how our formula will look like 
+
+$$
+P(B,m| K ) = \sum_m \frac{P(K | B, m ) * P(B, m)}{P(K)}
+$$
+
+Now, let's expand the denominator 
+
+$$ 
+P(K) = \sum_b P(b) \sum_m P(K|b,m) * P(m) 
+$$
+## This could be simplified
+
+This table helps us calculate the formula above. 
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-baqh{text-align:center;vertical-align:top}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-c3ow" colspan="2" rowspan="4">P(knife used | B, M)</th>
+    <th class="tg-c3ow" colspan="4">P(B)</th>
+    <th class="tg-0lax"></th>
+  </tr>
+  <tr>
+    <td class="tg-c3ow" colspan="2">P(B = Murderer) = 0.6</td>
+    <td class="tg-c3ow" colspan="2">P(B = Not Murderer) = 0.4</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow" colspan="2">P(M)</td>
+    <td class="tg-c3ow" colspan="2">P(M)</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">P(M =Murderer) = 0.2</td>
+    <td class="tg-0pky">P(M = Not Murderer) = 0.8</td>
+    <td class="tg-0pky">P(M = Murderer) = 0.2</td>
+    <td class="tg-0lax">P(M = Not Murderer) = 0.8</td>
+    <td class="tg-0lax">Sum </td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax" rowspan="2">Weapon Used<br></td>
+    <td class="tg-0lax">Knife</td>
+    <td class="tg-baqh"><span style="font-weight:bold">0.1</span> x 0.6 x 0.2 = <br>0.012</td>
+    <td class="tg-baqh"><span style="font-weight:bold">0.6</span> x 0.6 x 0.8 = <br>0.228</td>
+    <td class="tg-baqh"><span style="font-weight:bold">0.2 </span>x 0.4 x 0.2 = <br>0.016</td>
+    <td class="tg-baqh"><span style="font-weight:bold">0.3</span> x 0.4 x 0.8 = <br>0.096</td>
+    <td class="tg-baqh">0.412</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Gun</td>
+    <td class="tg-baqh">0.9 x 0.6 x 0.2 = <br>0.108</td>
+    <td class="tg-baqh">0.4<span style="font-weight:bold"> </span>x 0.6 x 0.8 = <br>0.48</td>
+    <td class="tg-baqh">0.8 x 0.4 x 0.2 = <br>0.064</td>
+    <td class="tg-baqh">0.7<span style="font-weight:bold"> </span>x 0.4 x 0.8 =<br>0.224<br></td>
+    <td class="tg-baqh">0.588</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"></td>
+    <td class="tg-0lax"></td>
+    <td class="tg-baqh">0.12</td>
+    <td class="tg-baqh">0.48</td>
+    <td class="tg-baqh">0.08</td>
+    <td class="tg-baqh">0.32</td>
+    <td class="tg-baqh">1</td>
+  </tr>
+</tbody>
+</table>
+
+
+our final calculation will be the following 
+
+$$
+P(B,m| K ) =  \frac{0.012+ 0.288} {0.412} = 0.728
+$$
+Therefore the probability of the murderer being the butler give that the crime weapon is %72 
