@@ -19,6 +19,14 @@ During this course we will be using few packages that do not come with the base 
 
 _Note_: some of these packages uses a large number of dependencies and installing all these packages might take sometime. Be patient. 
 
+## Alternatively use docker image
+
+If you don't want to install all this software for one lecture. You could alternatively use Docker Images to run a container that has everything you need. This however, will require you to either [install Docker](https://hub.docker.com/?overlay=onboarding) on you PC/Mac or create an account on Docker.io to access [Play with Docker](https://labs.play-with-docker.com). 
+
+```
+docker run --rm -p 8787:8787 -e PASSWORD=hello arabiananalyst/s4ds
+```
+
 ## Outline 
 
 ###  Introduction
