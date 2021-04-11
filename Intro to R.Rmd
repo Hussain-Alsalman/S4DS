@@ -136,6 +136,8 @@ As in other modern programming languages doing operations on numbers will esclat
 ```{r}
 class(58L * 10)
 ```
+
+
 ```{r}
 class (5L / 2L)
 ```
@@ -159,20 +161,20 @@ R has two ways of dealing with Characters; as `character` or `factor`. factors p
 ```{r}
 x <- "data"
 class(x)
-x
+
 ```
 
 
 ```{r}
-y <- factor("data")
+y <- factor(x = "numbers", levels = c("data", "numbers", "Thakaa"))
 class(y)
-y
+
 ```
 
 we can find the length of the character by using `nchar`. It is important to know that this will not work in `factor` types. 
 
 ```{r}
-x <- "hello"
+x <- 1344
 nchar(x)
 ```
 
@@ -197,8 +199,9 @@ class(date1)
 as.integer(date1)
 ```
 ```{r}
-date2 <- as.POSIXct ("2019-06-1 17:42")
+date2 <- as.Date("2019-06-1 17:42")
 class(date2)
+as.numeric(date2)
 ```
 ```{r}
 as.integer(date2)
@@ -244,8 +247,9 @@ Any logical operations will be evaluated as logical value
 Vectors are very special type in R. Think of them as arrays but only one dimension. Here is an example of how we create vectors. 
    
 ```{r}
-x <- c (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 class(x)
+is.vector(x)
 ```
 
 we can do operations so easily with vectors because R is a vectorized language 
@@ -278,6 +282,8 @@ a-b
 d <- 1:10
 f <- c(0,5)
 d + f 
+
+length(d) == length(f)
 ```
 
 logical operations are also possible on vectors 
@@ -290,7 +296,16 @@ we can name elements in the vector. Notice that we did not use `""` for the name
 
 ```{r}
 a <- c(Hussain = 3, Mona = 5, Haya = 7)
+a <- a + 1 
+names(a) <- c("Ebtehal", "Marwa", "Rana")
 a
+
+
+add <- function(num1 , num2) {
+  num1+num2
+}
+add(50, 90)
+
 ```
 
   
@@ -321,7 +336,7 @@ R represents missing data as `NA` and we can check a vector contains a missing d
 
 ```{r}
 missing_data <- c(1, 59, NA, 34, NA, 12)
-is.na(missing_data)
+sum(is.na(missing_data))
 ```
 
   
@@ -357,13 +372,14 @@ Data Frames are just like excel sheets. It as rows and columns and each column h
 x <- c("apple","orange", "grapes", "Kiwi", "lemon")
 
 y <- c( 10L, 40L, 23L, 12L, 50L)
-
+length(y) == length(x)
 # if we change one of the values to character the whole vector will be changed to character as expected 
 
 #y <- c( 10L, "40L", 23L, 12L, 50L)
 
 df <- data.frame(x,y, stringsAsFactors = FALSE)
 df 
+names(df) <- c("fruits", "quantity")
 ```
 
 we can change the name of the columns if we like using the `names` function. which by default will change the column names. we can add row names if we like. 
@@ -397,7 +413,9 @@ tail(df, n=3) # we can use the bottom of the df
 We can access any column using `$` sign. 
 
 ```{r}
-df$fruits
+df_small<- df[,2, drop=FALSE]
+
+df_small[3,1]
 ```
 
 or using the subscripts square brakets `[]` . 
@@ -428,7 +446,7 @@ lsts <- list(df, 1:10)
 ```
 
 ```{r}
-lsts[[1]]
+lsts[[2]]
 
 # what is the difference between [[]] and [] for lists 
 # [] keeps out put as a list while [[]] simplify it to what is inside the list
@@ -437,7 +455,7 @@ lsts[[1]]
 again we can use `names` function to keep life easier for us 
 ```{r}
 names(lsts) <- c("dataframe","vector")
-lsts$vector
+lsts$dataframe
 ```
 #### Matrices
 
@@ -466,14 +484,14 @@ Functions are really straight forward in R. All you need to know is the syntax
 
 ```{r}
 
-greetings <- function(name) {
+greetings <- function(name, lastname) {
   
-  return(paste("Hello ", name))
+  return(paste("Hello ", name, lastname))
 }
 
 greetings(name = "Hussain")
 # or we can provide arguments positional 
-greetings("Hussain")
+greetings(lastname = "Hussain", name = "Alsalman")
 
 ```
 
@@ -485,7 +503,7 @@ greetings <- function(name= "awesome person") {
   return(paste("Hello ", name))
 }
 
-greetings()
+greetings("Manar")
 ```
 
 #### Extra arguments 
@@ -520,8 +538,8 @@ greetings <- function(name = "awesome person", ...) {
 
 greetings(name = "s", check = TRUE)
 
-
-
+greetings(name = "attendes")
+?mean(0)
 ```
 
   
@@ -530,10 +548,18 @@ greetings(name = "s", check = TRUE)
 If you have programming background this should be really easy for you. We will go through the syntax really quickly because it is a straight forward proces. 
 
 ```{r, results='asis'}
+
+
+
 a <- TRUE
-if (a == TRUE)
+y <- NULL
+if (length(x) != length(y))
 {
- print(a)
+ print("there are not the same length")
+} else if (y == NULL) {
+  print("y is NULL")
+} else {
+  print("I don't know")
 }
 ```
 
@@ -573,6 +599,14 @@ Same thing with if statements. loops are very similar to other languages. There 
 
 ```{r}
 for (i in 1:4) print(i)
+
+x <- 1:10
+for (i in 1:10) {
+x[i] <- x[i] * 5  
+}
+x
+
+1:10 * 5
 ```
 
 Vectorized operation vs loops  

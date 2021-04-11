@@ -1,5 +1,5 @@
 # Statistics for Data Science 
-Some foundation in statistics is required to take on Data Science projects. This repo contains a introductory material about concepts in statistics. This was created specifically for a workshop sponsored by [Bayan](https://bayan.site/). 
+Some foundation in statistics is required to take on Data Science projects. This repo contains a introductory material about concepts in statistics. This was initially created for a workshop sponsored by [Bayan](https://bayan.site/). Due to increasing interest in the material, I started using it for other workshops.  
   
 ## Software & System requirements 
 

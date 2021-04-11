@@ -2,6 +2,7 @@
 output:
   revealjs::revealjs_presentation:
     self_contained: false
+    slide_level: 2
     reveal_options:
       slideNumber: true
     theme: black
@@ -10,6 +11,7 @@ output:
     highlight: tango
     smart: false
     autoAnimate: true
+
 ---
 ---
 
@@ -31,11 +33,13 @@ library("fontawesome")
 
 <section>
 
+
 </br><h1 class ='title'>R for Statistics for Beginners</h1>
 </br></br><h3  class= 'author'>`r fa("id-badge",fill = "white")` Hussain Alsalman</h3>
 <h5 class = 'subtitles'>`r fa("twitter",fill = "white")` @Arabian_Analyst</h5>
 <h5 class = 'subtitles'>`r fa("link",fill = "white")` https://ArabianAnalyst.com</h5>
 <h5 class = 'subtitles'>`r fa("calendar-day",fill = "white")` `r Sys.Date()`</h5>
+<h5 class = 'subtitles'>`r fa("envelope",fill = "white")` ArabianAnalyst@gmail.com</h5>
 </br>
 
 <aside class="notes">
@@ -44,8 +48,8 @@ Good evening everyone, thank you all for attending this seminar. My name is Huss
 Professionally, I work as a Planning & Performance Management Analyst at Saudi Aramco. Outside working hours, I am a data science enthusiast and blogger, so if you recognize me it is probably from twitter because I am very active there or maybe you have read one of my blogs on ArabianAnalyst.com.
  
 </aside>
-
 </section>
+
 
 
 ## Agenda 
@@ -62,7 +66,7 @@ Professionally, I work as a Planning & Performance Management Analyst at Saudi A
   - Data Pre-processing 
   - Linear Regression 
 
-<aside>
+<aside class="notes">
 
 
 </aside>
@@ -124,9 +128,10 @@ R beyond basics
       - Base Graphs 
       - ggplot2
 
+# Introduction to Statistics
 
 ## What are the types of data?
-### Structured data 
+**Structured data** 
 
 Data that has pre-defined format. We mainly refer to the data that can be stored in tabular format. 
 
@@ -160,7 +165,7 @@ knitr::include_graphics(path = here("assets", "Images", "Pivot-Table-Data-Source
 
 - **Storage inflexibility**
   
-</small>Your structured data is generally stored in data warehouses or relational databases, both of which have very stringent structures. If you need to change your data needs, the likelihood is you’ll have to update all of your structured data.<small>
+<small>Your structured data is generally stored in data warehouses or relational databases, both of which have very stringent structures. If you need to change your data needs, the likelihood is you’ll have to update all of your structured data.</small>
     
 - **Limited use cases**
   
@@ -169,12 +174,9 @@ knitr::include_graphics(path = here("assets", "Images", "Pivot-Table-Data-Source
 
 
 ## What are the types of data? ..(continued)
-
 ### Unstructured data 
 
 Those include everything else, from texts on websites and social media to uploaded videos and music. 
-
----
 
 ```{r unstructured data, out.width="%80"}
 knitr::include_graphics(path = here("assets", "Images", "unstructured_data_examples.png"))
@@ -218,37 +220,39 @@ Disadvantages:
 
 ## Structured vs Unstructured Summary
 
-```{r data structure comparison, out.width="%80"}
+```{r data structure comparison, out.width="%100", fig.align='center'}
 knitr::include_graphics(path = here("assets", "Images", "structured-unstructured.jpg"))
 ```
 
-*Dealing with unstructured data is beyond the scope of this lecture So we will focus on Structure data tonight*
+<small>Dealing with unstructured data is beyond the scope of this lecture So we will focus on Structure data tonight</small>
 
 
-## Introduction about Statistics
+
+
 
 ##  Introduction about Statistics
 
 Before we start, we need to mention that Statistics is divided mainly into two parts. 
 
-- Descriptive Statistics (_Lecture Focus_)
+- <span class="fragment highlight-blue" data-fragment-index="1">Descriptive Statistics</span> (_Lecture Focus_)
   
   This branch focuses on describing the Data without making and conclusions 
   
-- Inferential Statistics 
+- <span class="fragment highlight-blue" data-fragment-index="1">Inferential Statistics</span>
     
   This branch is all about making conclusions. It takes sample from the population and try to make statistical tests to generalize the idea. 
 
 
 ## Random Sampling and Sample Bias 
 
-### Sample 
+<span class="fragment highlight-green" data-fragment-index="1">**Sample**</span>
 A sample is a subset of data from a larger data set; statisticians call this larger data set the **population**
 
-### Random  sampling
+<span class="fragment highlight-red" data-fragment-index="1">**Random  sampling**</span>
 Random Sampling is  a  process  in  which  each  available  member  of  the  population being sampled has an equal chance of being chosen for the sample at each draw
 
---- 
+## Explination
+
 ```{r population and sample, out.width= "%80"}
 knitr::include_graphics(path = here("assets", "Images","sample-size-definition.png"))
 ```
@@ -267,20 +271,20 @@ The story of Franklin Roosevelt and Alf Landon election race in 1936
 
 - Literary Digest vs  George Gullup
 
-```{r story of bad sample, out.width= "%80"}
+```{r story of bad sample, out.width= "%80", fig.align='center'}
 knitr::include_graphics(path = here("assets", "Images","bad_sampling.jpeg"))
 ```
 
-<aside>
-
+<aside class = "notes">
 
 The  classic  example  is  the  Literary  Digest  poll  of  1936  that  predicted  a  victory  of  Alf Landon over Franklin Roosevelt. The Literary Digest, a leading periodical of the day, polled its entire subscriber base plus additional lists of individuals, a total of over 10 million people, and predicted a landslide victory for Landon. George Gallup, founder of the Gallup Poll, conducted biweekly polls of just 2,000 people and accurately predicted a Roosevelt victory. The difference lay in the selection of those polled. The  Literary Digest  opted  for  quantity,  paying  little  attention  to  the  method  of  selection.  They  ended  up  polling  those  with  relatively  high socioeconomic  status  (their own  subscribers,  plus  those  who,  by  virtue  of  owning  luxuries  like  telephones  and automobiles,  appeared  in  marketers’  lists).  The  result  was  sample  bias;  that  is,  the sample was different in some meaningful and nonrandom way from the larger population it was meant to represent. The term nonrandom is important—hardly any sample,  including  random  samples,  will  be  exactly  representative  of  the  population. Sample bias occurs when the difference is meaningful, and it can be expected to continue for other samples drawn in the same way as the first.
+
 </aside>
 
 ## Sample Bias 
 
 
-```{r sample bias joke, out.width= "%80"}
+```{r sample bias joke, out.width= "%90", fig.align='center'}
 knitr::include_graphics(path = here("assets", "Images","dilbert-sampling.gif"))
 ```
 
@@ -292,7 +296,7 @@ It is numerical representation of how likely for an event to occur.
 
 [Basic rules](http://ais.informatik.uni-freiburg.de/teaching/ss10/robotics/etc/probability-rules.pdf) 
 
-```{r, out.width= "%70", fig.align='right'}
+```{r, fig.align='center'}
 knitr::include_graphics(path = here("assets", "Images","venn_probabilities.png"))
 ```
 
@@ -316,20 +320,20 @@ $$
 
 ### Types of Data
   
-```{r data_type_tree, out.width= "%80"}
+```{r data_type_tree, out.width= "80%", fig.align='center'}
 knitr::include_graphics(path = here("assets", "Images","Data_Types.jpg"))
 ```
 
 ## Are all data equal?
 
-```{r level of measurements, out.width= "%80"}
+```{r level of measurements, out.width= "80%", fig.align='center'}
 knitr::include_graphics(path = here("assets", "Images", "level_of_measurements.png"))
 ```
 
 
 ## Are all data equal?
 
-```{r measurement features, out.width= "%80"}
+```{r measurement features, out.width= "80%", fig.align='center'}
 knitr::include_graphics(path = here("assets", "Images", "summary-of-data-types-and-scales-768x405.png"))
 ```
 
@@ -351,7 +355,7 @@ However, they are very useful in analytic tasks such as
 
 ## M&M samples *[Hands-on exercise](./assets/Code/M&MExample.R)*
 
-```{r M&M, out.width= "%80"}
+```{r M&M, out.width= "80%", fig.align='center'}
 knitr::include_graphics(path = here("assets", "Images", "M&M_spokescandies.png"))
 ```
 
@@ -383,13 +387,13 @@ Those are exact variables and open doors for many statistical analysis. We can d
   
  - **Outliers**
 
-### Centeral Limit Theorm 
+## Centeral Limit Theorm 
 
 if you have a population with mean μ and standard deviation σ and take sufficiently large random samples from the population with replacement , then the distribution of the sample means will be approximately normally distributed    
 
 
 
-```{r central limit theorem, out.width= "80%"}
+```{r central limit theorem, out.width="50%", fig.align='center'}
 
 knitr::include_graphics(path = here("assets", "Images", "centeral-limit-theorm.png"))
 
@@ -404,7 +408,7 @@ How do we measure the relationship between variables?
 We use **covariance** (_not common_) or **correlation** (_most common_)
 
 
-## Correlation vs Covariance
+### Correlation vs Covariance
 
 
 Covariance : $Cov(x,y) = \frac{\sum (X-\bar{X})(Y-\bar{Y})}{N}$
@@ -415,7 +419,7 @@ Correlation : $r = \frac{1}{n-1} \sum (\frac{X-\bar{X}}{s_{x}}){(\frac{Y-\bar{Y}
 
 ## Correlation Types
 
-```{r correlations, out.width= "80%"}
+```{r correlations, out.width='100%', fig.align='center'}
 
 knitr::include_graphics(path = here("assets", "Images", "correlation_examples.png"))
 
@@ -570,5 +574,5 @@ sample_df[sample_df[,"HMA"] > 50,]
 
 ## Linear Regression 
 
-### Interactive Session 
+Interactive Session 
 [Linear Regression](./Linear_Regression.Rmd)

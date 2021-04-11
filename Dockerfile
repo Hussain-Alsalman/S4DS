@@ -12,9 +12,9 @@ RUN install2.r --error \
   ggplot2 \ 
   scales \ 
   gganimate \
-  DAAG 
-
-RUN R -e 'install.packages("broom")'
+  DAAG \
+  revealjs \
+  broom
 
 COPY ./ /home/rstudio/
 
