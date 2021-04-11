@@ -1,0 +1,14 @@
+.reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }
+
+h1.title, h3.author, h5.subtitles  {
+	text-align: left;
+}
+

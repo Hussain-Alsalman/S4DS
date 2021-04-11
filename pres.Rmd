@@ -1,12 +1,16 @@
 ---
-title: "Statistics for Data Science"
-author: "Hussain Alsalman"
-date: "1/21/2021"
 output:
-  powerpoint_presentation:
-    reference_doc: BayanSlides.pptx
-    slide_level: 3
-  html_document: default  
+  revealjs::revealjs_presentation:
+    self_contained: false
+    reveal_options:
+      slideNumber: true
+    theme: black
+    css: "css/my_css.css"
+    reveal_plugins: ["notes"]
+    highlight: tango
+    smart: false
+    autoAnimate: true
+---
 ---
 
 ```{r setup, include=FALSE, message=FALSE}
@@ -21,137 +25,198 @@ library("scales")
 library("gganimate")
 library("broom")
 library("DAAG")
+library("fontawesome")
   
 ```
 
+<section>
 
-### Agenda 
+</br><h1 class ='title'>R for Statistics for Beginners</h1>
+</br></br><h3  class= 'author'>`r fa("id-badge",fill = "white")` Hussain Alsalman</h3>
+<h5 class = 'subtitles'>`r fa("twitter",fill = "white")` @Arabian_Analyst</h5>
+<h5 class = 'subtitles'>`r fa("link",fill = "white")` https://ArabianAnalyst.com</h5>
+<h5 class = 'subtitles'>`r fa("calendar-day",fill = "white")` `r Sys.Date()`</h5>
+</br>
 
-- Introduction about Data & Statistics *(20 mins)*
-- Data Exploratory using statistical techniques  *(40 mins)*
-- Data Preprocessing *(60 mins)*
-- Linear Regression *(60 mins)*
+<aside class="notes">
+Good evening everyone, thank you all for attending this seminar. My name is Hussain Alsalman and I am here today to few things about R and how to make simple but powerful data analysis using core concepts of statistics.  
 
-::: notes
+Professionally, I work as a Planning & Performance Management Analyst at Saudi Aramco. Outside working hours, I am a data science enthusiast and blogger, so if you recognize me it is probably from twitter because I am very active there or maybe you have read one of my blogs on ArabianAnalyst.com.
+ 
+</aside>
+
+</section>
 
 
-::: 
+## Agenda 
 
-## Introduction about Data & Statistics
+- **Quick Intro to R**
+  - Get very familiar with R programming and syntax 
+  - All basic R 
+  - Beyond Basics 
+  - Get introduced to ggplot2 
 
-### What are the types of data?
+- **Statistics, Data Wrangling & Simple Linear Regression**
+  - Introduction about Data & Statistics 
+  - Data Exploratory using statistical techniques  
+  - Data Pre-processing 
+  - Linear Regression 
 
-:::::: {.columns}
+<aside>
 
-:::{.column}
 
-##### Structured data 
+</aside>
+
+
+# Foundations of R Programming 
+
+## What is R?
+
+R is a <span class="fragment highlight-red" data-fragment-index="1">free</span> language and environment for <span class="fragment highlight-red" data-fragment-index="2">statistical computing</span> and <span class="fragment highlight-red" data-fragment-index="3">graphics</span>. You can perform a variety of tasks using R language. Some are as follows 
+
+- Exploring and Manipulating Data
+- Building and validating predictive models
+- Applying machine learning and text mining algorithms
+- Creating visually appealing graphs
+- Building online dynamic reports or dashboards
+
+
+## Command Line Interface for R. 
+
+- R is an engine that can be run through CLI.
+- R comes with simple GUI but it is very primitive (Mac & Windows only). 
+- You can run multiple instances of R with no problem. 
+
+Let's learn how to 
+
+- Set our working directory 
+- Save our workspace 
+- Load our workspace 
+- Display existing objects 
+- Remove objects 
+- Save our history 
+
+
+## R Basics
+
+Let's learn how to 
+
+  - Basic Math 
+  - Variables 
+  - Data Types
+  - Vectors
+  - Calling Functions
+  - Function Documentation 
+  - Missing Data
+  - Pipes 
+  
+## R beyond basics
+
+R beyond basics 
+
+  - Other data Types (Data.Frames, Lists, Matrices, Arrays)
+  - Writing Functions
+  - Control Statements & Loops  
+  - Reading Data into R
+      - CSV, Excel 
+      - R Binary data
+  - Graphing in R 
+      - Base Graphs 
+      - ggplot2
+
+
+## What are the types of data?
+### Structured data 
 
 Data that has pre-defined format. We mainly refer to the data that can be stored in tabular format. 
-
-:::
-
-:::{.column}
 
 ```{r structured data, out.width="%80"}
 knitr::include_graphics(path = here("assets", "Images", "Pivot-Table-Data-Source-Structure.png"))
 ```
-:::
 
-::::::
+## Structured Data 
 
-### Structured Data 
+### Advantages:
 
-Advantages:
+- **Universally understood**
 
-  - **Universally understood**
-  
-    The factual nature of structured data allows users of all skill levels to understand the meanings and relationships behind the data itself.
-  
-  - **Transferable to data tools**
-  
-    Many data tools thrive on structured data, making it easier for you to analyze.
-  
-  - **Easily digestible for data programs**
-  
-    Machine learning algorithms can easily crawl structured data fields, allowing for simplified data querying and manipulation.
-  
-  - **Space savings**
-  
-    Historically, businesses store data in structures to keep the space required at a minimum.
+<small> The factual nature of structured data allows users of all skill levels to understand the meanings and relationships behind the data itself.</small>
 
-### Structured Data..(continued)
+- **Transferable to data tools**
 
-#### Disadvantages:
+<small> Many data tools thrive on structured data, making it easier for you to analyze.</small>
 
-  - **Storage inflexibility**
+- **Easily digestible for data programs**
+
+<small>Machine learning algorithms can easily crawl structured data fields, allowing for simplified data querying and manipulation.</small>
+
+- **Space savings**
+
+<small>Historically, businesses store data in structures to keep the space required at a minimum.</small>
+
+## Structured Data..(continued)
+
+### Disadvantages:
+
+- **Storage inflexibility**
   
-    Your structured data is generally stored in data warehouses or relational databases, both of which have very stringent structures. If you need to change your data needs, the likelihood is you’ll have to update all of your structured data.
+</small>Your structured data is generally stored in data warehouses or relational databases, both of which have very stringent structures. If you need to change your data needs, the likelihood is you’ll have to update all of your structured data.<small>
     
-  - **Limited use cases**
+- **Limited use cases**
   
-    Pre-defined, structured data can only be used for its intended purpose, which causes some inflexibility.
+<small> Pre-defined, structured data can only be used for its intended purpose, which causes some inflexibility.</small>
 
 
 
-### What are the types of data? ..(continued)
+## What are the types of data? ..(continued)
 
-:::::: {.columns}
-
-:::{.column}
-
-#### Unstructured data 
+### Unstructured data 
 
 Those include everything else, from texts on websites and social media to uploaded videos and music. 
 
-:::
-
-:::{.column}
+---
 
 ```{r unstructured data, out.width="%80"}
 knitr::include_graphics(path = here("assets", "Images", "unstructured_data_examples.png"))
 ```
-:::
-
-::::::
 
 
-### Unstructured Data 
+## Unstructured Data 
 
 Advantages:
 
 - **Wider use cases**  
 
-  Without any pre-definition, unstructured data can be used for more than one intended purpose.
+  <small>Without any pre-definition, unstructured data can be used for more than one intended purpose.</small>
 
 - **Flexible formatting**  
 
-  Unstructured data can be stored in a variety of formats.
+  <small>Unstructured data can be stored in a variety of formats.</small>
 
 - **Easy storage** 
 
-  Because of the onset of unstructured data – due to modern demands and the internet – storage for this type of data is now easier and cheaper.
+  <small>Because of the onset of unstructured data – due to modern demands and the internet – storage for this type of data is now easier and cheaper.</small>
 
 - **More data, more insights** 
 
-  Although harder to analyze, your organization most likely has more unstructured data than structured. This data could hold brilliant insights that could amplify your competitiveness.
+  <small>Although harder to analyze, your organization most likely has more unstructured data than structured. This data could hold brilliant insights that could amplify your competitiveness.</small>
   
 
-### Unstructured Data..(continued)
+## Unstructured Data..(continued)
 
 Disadvantages:
 
   - **Difficult to prepare and analyze** 
   
-    Unless you have an experienced team of data scientists, unstructured data will remain inaccessible. Your average business user will not be able to understand its undefined format or draw value from it.
+    <small>Unless you have an experienced team of data scientists, unstructured data will remain inaccessible. Your average business user will not be able to understand its undefined format or draw value from it.</small>
   
   - **It requires specific data tools**
   
-    Most data tools, such as Excel, can’t handle unstructured data. This means your business will have to search for a specific data management tool to manipulate the data.
+    <small>Most data tools, such as Excel, can’t handle unstructured data. This means your business will have to search for a specific data management tool to manipulate the data.</small>
 
 
 
-### Structured vs Unstructured Summary
+## Structured vs Unstructured Summary
 
 ```{r data structure comparison, out.width="%80"}
 knitr::include_graphics(path = here("assets", "Images", "structured-unstructured.jpg"))
@@ -160,7 +225,9 @@ knitr::include_graphics(path = here("assets", "Images", "structured-unstructured
 *Dealing with unstructured data is beyond the scope of this lecture So we will focus on Structure data tonight*
 
 
-### Introduction to Statistics 
+## Introduction about Statistics
+
+##  Introduction about Statistics
 
 Before we start, we need to mention that Statistics is divided mainly into two parts. 
 
@@ -173,61 +240,44 @@ Before we start, we need to mention that Statistics is divided mainly into two p
   This branch is all about making conclusions. It takes sample from the population and try to make statistical tests to generalize the idea. 
 
 
-### Random Sampling and Sample Bias 
+## Random Sampling and Sample Bias 
 
-:::::: {.columns}
-
-::: {.column}
-
-#### Sample 
+### Sample 
 A sample is a subset of data from a larger data set; statisticians call this larger data set the **population**
 
-#### Random  sampling
+### Random  sampling
 Random Sampling is  a  process  in  which  each  available  member  of  the  population being sampled has an equal chance of being chosen for the sample at each draw
-:::
 
-::: {.column}
-
+--- 
 ```{r population and sample, out.width= "%80"}
 knitr::include_graphics(path = here("assets", "Images","sample-size-definition.png"))
 ```
 
-:::
 
-::::::
+## Sample Bias 
 
-### Sample Bias 
-
-#### Bias
+### Bias
 Statistical bias refers to measurement or sampling errors that are systematic and produced by the measurement or sampling process. An important distinction should be made  between  errors  due  to  *random  chance*  and  errors  due  to  *bias*
 
-### Sample Bias.. (continued)
+## Sample Bias.. (continued)
 
-:::::: {.columns}
 
-::: {.column}
 
 The story of Franklin Roosevelt and Alf Landon election race in 1936
 
-::: 
-
-::: {.column}
+- Literary Digest vs  George Gullup
 
 ```{r story of bad sample, out.width= "%80"}
 knitr::include_graphics(path = here("assets", "Images","bad_sampling.jpeg"))
 ```
 
-:::
+<aside>
 
-:::::: 
-
-::: notes 
 
 The  classic  example  is  the  Literary  Digest  poll  of  1936  that  predicted  a  victory  of  Alf Landon over Franklin Roosevelt. The Literary Digest, a leading periodical of the day, polled its entire subscriber base plus additional lists of individuals, a total of over 10 million people, and predicted a landslide victory for Landon. George Gallup, founder of the Gallup Poll, conducted biweekly polls of just 2,000 people and accurately predicted a Roosevelt victory. The difference lay in the selection of those polled. The  Literary Digest  opted  for  quantity,  paying  little  attention  to  the  method  of  selection.  They  ended  up  polling  those  with  relatively  high socioeconomic  status  (their own  subscribers,  plus  those  who,  by  virtue  of  owning  luxuries  like  telephones  and automobiles,  appeared  in  marketers’  lists).  The  result  was  sample  bias;  that  is,  the sample was different in some meaningful and nonrandom way from the larger population it was meant to represent. The term nonrandom is important—hardly any sample,  including  random  samples,  will  be  exactly  representative  of  the  population. Sample bias occurs when the difference is meaningful, and it can be expected to continue for other samples drawn in the same way as the first.
+</aside>
 
-:::
-
-### Sample Bias 
+## Sample Bias 
 
 
 ```{r sample bias joke, out.width= "%80"}
@@ -236,8 +286,7 @@ knitr::include_graphics(path = here("assets", "Images","dilbert-sampling.gif"))
 
 
 
-
-### Probability 
+## Probability 
 
 It is numerical representation of how likely for an event to occur. 
 
@@ -247,15 +296,15 @@ It is numerical representation of how likely for an event to occur.
 knitr::include_graphics(path = here("assets", "Images","venn_probabilities.png"))
 ```
 
-#### Bayes Theorm 
+## Bayes Theorm 
 
 $$
 P(A|B) =\frac{P(B |A) * P(A)}{P(B)}
 $$
 
-### Two schools of thoughts
+## Two schools of thoughts
 
-- **Frequentist interpretation**: [hands-on exercise](./assets/Code/Probability Concept.R)
+- **Frequentest interpretation**: [hands-on exercise](./assets/Code/Probability Concept.R)
   probability of a random event denotes the relative frequency of occurrence of an experiment's outcome, when the experiment is repeated indefinitely.
 
   - Law of large numbers 
@@ -271,21 +320,21 @@ $$
 knitr::include_graphics(path = here("assets", "Images","Data_Types.jpg"))
 ```
 
-### Are all data equal?
+## Are all data equal?
 
 ```{r level of measurements, out.width= "%80"}
 knitr::include_graphics(path = here("assets", "Images", "level_of_measurements.png"))
 ```
 
 
-### Are all data equal?
+## Are all data equal?
 
 ```{r measurement features, out.width= "%80"}
 knitr::include_graphics(path = here("assets", "Images", "summary-of-data-types-and-scales-768x405.png"))
 ```
 
 
-### Categorical Data 
+## Categorical Data 
 
 In many cases especially in classification problem this is usually our target variable.
 
@@ -300,14 +349,14 @@ However, they are very useful in analytic tasks such as
 - Filtering 
 
 
-### M&M samples *[Hands-on exercise](./assets/Code/M&MExample.R)*
+## M&M samples *[Hands-on exercise](./assets/Code/M&MExample.R)*
 
 ```{r M&M, out.width= "%80"}
 knitr::include_graphics(path = here("assets", "Images", "M&M_spokescandies.png"))
 ```
 
 
-### Quantitative Data 
+## Quantitative Data 
 Those are exact variables and open doors for many statistical analysis. We can describe quantitative data by 
 
 - **Measure of centrality** *[Hands-on exercise](./assets/Code/Centrality_Measure.R)*
@@ -324,7 +373,7 @@ Those are exact variables and open doors for many statistical analysis. We can d
   - Variance 
   
 
-### Quantitative Data..(continued)
+## Quantitative Data..(continued)
 
 - **Shape** *[Hands-on exercise](./assets/Code/Shape_of_Data.R)*
 
@@ -336,15 +385,9 @@ Those are exact variables and open doors for many statistical analysis. We can d
 
 ### Centeral Limit Theorm 
 
-:::::: {.columns}
-
-::: {.column}
-
 if you have a population with mean μ and standard deviation σ and take sufficiently large random samples from the population with replacement , then the distribution of the sample means will be approximately normally distributed    
 
-:::
 
-::: {.column}
 
 ```{r central limit theorem, out.width= "80%"}
 
@@ -352,43 +395,34 @@ knitr::include_graphics(path = here("assets", "Images", "centeral-limit-theorm.p
 
 ```
 
-:::
 
-::::::
 
-### More Statistical concepts 
+## More Statistical concepts 
 
 How do we measure the relationship between variables?
 
 We use **covariance** (_not common_) or **correlation** (_most common_)
 
 
-#### Correlation vs Covariance
+## Correlation vs Covariance
 
-:::::: {.columns}
-
-::: {.column}
 
 Covariance : $Cov(x,y) = \frac{\sum (X-\bar{X})(Y-\bar{Y})}{N}$
 
 Correlation : $r = \frac{1}{n-1} \sum (\frac{X-\bar{X}}{s_{x}}){(\frac{Y-\bar{Y}}{s_{y}})}$
 
-:::
 
-::: {.column}
 
-**Correlation Types**
+## Correlation Types
 
 ```{r correlations, out.width= "80%"}
 
 knitr::include_graphics(path = here("assets", "Images", "correlation_examples.png"))
 
 ```
-:::
 
-::::::
 
-### Data Preprocessing 
+## Data Preprocessing 
 
 Why do we preprocess data?
 
@@ -398,7 +432,7 @@ Why do we preprocess data?
 - Data in a form not suitable for the machine learning models;
 - Values not consistent with policy or common sense.
 
-### Common Tasks in Data preprocessing 
+## Common Tasks in Data preprocessing 
 
 - Data cleaning
 - Handling missing data 
@@ -410,7 +444,7 @@ Why do we preprocess data?
 [Hands-on exercise](./assets/Code/Data_preprocessing.R)
 
 
-### Data Preprocessing Continuation 
+## Data Preprocessing Continuation 
 
  - Graphical Methods to identify outliers
  - Normalizing data
@@ -419,9 +453,8 @@ Why do we preprocess data?
 
 [Hands-on exercise](./assets/Code/Data_preprocessing.R)
 
-:::::: {.rows}
 
-### Other considerations - Data Preprocessing 
+## Other considerations - Data Preprocessing 
 
 Categorical variables : we create **dummy variables** for categorical variables that are **Nominal**
 
@@ -433,7 +466,7 @@ Example: How to encode `Maritul Status`? given that we have 4 categories {Marrie
 | 10002        | 63000    | Single           |
 
 
-### Other considerations - Data Preprocessing 
+## Other considerations - Data Preprocessing 
 
 
 We simply create **dummy variables** for `n-1` of all the classes for the categorical variable. 
@@ -443,7 +476,7 @@ We simply create **dummy variables** for `n-1` of all the classes for the catego
 |    10001   |  40000 |    0   |    1    |     0    |
 |    10002   |  63000 |    1   |    0    |     0    |
 
-### Other considerations  - Data Preprocessing 
+## Other considerations  - Data Preprocessing 
 
 Categorical variables : we can substitute classes with  numerical for variables that are **Ordinal** 
 
@@ -457,7 +490,7 @@ Example
 | agree             |   4   |
 | strongly agree    |   5   |
 
-### Other considerations  - Data Preprocessing 
+## Other considerations  - Data Preprocessing 
 
 Binning Numerical Variables : Some algorithms prefer categorical variables therefore, we need to perform binning
 
@@ -474,7 +507,7 @@ note:
 - 3 & 4 are usually preferred.
 
 
-### Other considerations  - Data Preprocessing 
+## Other considerations  - Data Preprocessing 
 
 Removing Variables That Are Not Useful
 
@@ -484,7 +517,7 @@ Reasoning :
 
 having fixed or almost fixed variable does not help explain the variability in the target variable. 
 
-### Other considerations  - Data Preprocessing 
+## Other considerations  - Data Preprocessing 
 
 Variables That Should Probably Not Be Removed
 
@@ -497,7 +530,7 @@ Reasoning :
 - if two variables are correlated some analyst just remove one of the variables, however, this might lead to lost of important information. It is best to use principle component analysis instead. 
 
 
-### Try at Home excercise 
+## Try at Home excercise 
 
 What can you tell about this dataset 
 
@@ -507,7 +540,7 @@ What can you tell about this dataset
 
 Do you suspect outliers?
 
-### US Household Data 
+## US Household Data 
 
 **Example**
 US Households data. 

@@ -416,12 +416,82 @@ summary {
 <div id="statistics-for-data-science" class="section level1">
 <h1>Statistics for Data Science</h1>
 <p>Some foundation in statistics is required to take on Data Science projects. This repo contains a introductory material about concepts in statistics. This was created specifically for a workshop sponsored by <a href="https://bayan.site/">Bayan</a>.</p>
+<div id="software-system-requirements" class="section level2">
+<h2>Software &amp; System requirements</h2>
+<div id="prefered-os" class="section level3">
+<h3>Prefered OS</h3>
+<ul>
+<li>All code was run on <code>Linux 18.04.1-Ubuntu</code></li>
+</ul>
+</div>
+</div>
+<div id="pre-course-preparations" class="section level2">
+<h2>Pre-course preparations</h2>
+<ul>
+<li>Installing the latest R version or ≥ 4.0 (<a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a>)</li>
+<li>Intalling the latest RStudio Desktop or ≥1.3 (<a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a>)</li>
+<li>Installing latest Git or ≥ 2.17
+<ul>
+<li>Also install Git Bash for windows</li>
+</ul></li>
+</ul>
+</div>
+<div id="r-packages-to-isntall" class="section level2">
+<h2>R packages to isntall</h2>
+<p>During this course we will be using few packages that do not come with the base R. Therefore, I have put a chunk of code in the <code>requirements.txt</code> that will install all the necessary packages for you. All you have to do is open the R-base and copy and paste the content of the file.</p>
+<p><em>Note</em>: some of these packages uses a large number of dependencies and installing all these packages might take sometime. Be patient.</p>
+</div>
+<div id="alternatively-use-docker-image" class="section level2">
+<h2>Alternatively Use Docker Image</h2>
+<p>If you don’t want to install all this software for one lecture. You could alternatively use Docker Images to run a container that has everything you need. This however, will require you to either <a href="https://hub.docker.com/?overlay=onboarding">install Docker</a> on you PC/Mac or create an account on Docker.io to access <a href="https://labs.play-with-docker.com">Play with Docker</a>.</p>
+<pre><code># run this image to start wright away 
+docker run --rm -p 8787:8787 -e PASSWORD=hello arabiananalyst/s4ds</code></pre>
+</div>
 <div id="outline" class="section level2">
 <h2>Outline</h2>
-<div id="basic-statistical-concepts" class="section level4">
-<h4>Basic Statistical concepts</h4>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
 <ul>
-<li></li>
+<li><p>Data as building block of statistics</p>
+<ul>
+<li>Data formats (structure and unstructured with examples)</li>
+<li>Data Types (Discrete and Continuous)</li>
+</ul></li>
+<li><p>Basic statistics Concepts and Definitions</p>
+<ul>
+<li>Branches of Statistics (Descriptive vs Inferential)</li>
+<li>Samples vs Population (The story of Alf Landon vs Franklin Roosevelt election 1936)</li>
+<li>Type of Biases</li>
+<li>Probability Theory <em>(optional)</em></li>
+<li>Law of large numbers <em>(optional)</em></li>
+</ul></li>
+</ul>
+</div>
+<div id="data-exploratory-using-statistical-techniques" class="section level3">
+<h3>Data Exploratory using statistical techniques</h3>
+<ul>
+<li>Measure of Centrality</li>
+<li>Measure of Variability</li>
+<li>Probability Distributions</li>
+<li>Central Limit Theorem</li>
+</ul>
+</div>
+<div id="data-preprocessing" class="section level3">
+<h3>Data Preprocessing</h3>
+<ul>
+<li>Data cleaning</li>
+<li>Handling missing data</li>
+<li>Identify misclassificaitons</li>
+<li>Graphically identify outliers</li>
+<li>Transformation data <em>to work better with ML models</em></li>
+<li>Normalize the data</li>
+</ul>
+</div>
+<div id="linear-regression" class="section level3">
+<h3>Linear Regression</h3>
+<ul>
+<li>Linear Regression Definition</li>
+<li>The intuition of Linear Regression</li>
 </ul>
 </div>
 </div>
