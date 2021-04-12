@@ -24,12 +24,18 @@ _Note_: some of these packages uses a large number of dependencies and installin
 If you don't want to install all this software for one lecture. You could alternatively use Docker Images to run a container that has everything you need. This however, will require you to either [install Docker](https://hub.docker.com/?overlay=onboarding) on you PC/Mac or create an account on Docker.io to access [Play with Docker](https://labs.play-with-docker.com). 
 
 ```
-docker run --rm -p 8787:8787 -e PASSWORD=hello arabiananalyst/s4ds
+docker run --rm  -p 8787:8787 -e ROOT=TRUE -e USER=yourname -e PASSWORD=hello arabiananalyst/s4ds
 ```
 
 ## Outline 
 
 ###  Introduction
+
+  - Foundations of R Programming
+    
+      - Command Line Interface for R
+      - R Basics
+      - R beyond basics
 
   - Data as building block of statistics
   
@@ -44,6 +50,7 @@ docker run --rm -p 8787:8787 -e PASSWORD=hello arabiananalyst/s4ds
       - Probability Theory *(optional)*
       - Law of large numbers *(optional)*
     
+
 ###  Data Exploratory using statistical techniques  
 
   - Measure of Centrality
