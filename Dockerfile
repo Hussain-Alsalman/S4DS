@@ -14,7 +14,8 @@ RUN install2.r --error \
   gganimate \
   DAAG \
   revealjs \
-  broom
+  broom \ 
+  fontawesome
 
 COPY ./ /home/rstudio/
 
